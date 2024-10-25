@@ -6,10 +6,19 @@ services:
     restart: always
     image: mysql:latest
     environment:
-      MYSQL_ROOT_PASSWORD: 'test_pass' # TODO: Change this
-      MYSQL_USER: 'test'
-      MYSQL_PASS: 'pass'
+      #MYSQL_ROOT_PASSWORD: 'test_pass' # TODO: Change this
+      #MYSQL_USER: 'test'
+      #MYSQL_PASS: 'pass'
+      TERM: 'xterm'
+      APP_ENV: 'dev'
+      #MYSQL_USER: counter
+      #MYSQL_PASSWORD: counter1123
+      MYSQL_DATABASE: 'counter'
+      MYSQL_ROOT_PASSWORD: 'test_pass'
+    #container_name: mysql
     volumes:
       - /opt/mysql_data:/var/lib/mysql
+    #  - ./config.cnf:/etc/mysql/conf.d/config.cnf
+      - ./init-dump:/docker-entrypoint-initdb.d
     ports:
     - "3306:3306"
